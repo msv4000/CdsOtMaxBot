@@ -1,0 +1,20 @@
+[Unit]
+Description=MAX Bot Webhook (Транспорт Великого Новгорода)
+After=network.target
+
+[Service]
+Type=simple
+User=cds
+Group=cds
+WorkingDirectory=/opt/max-bot
+EnvironmentFile=/opt/max-bot/webhook.env
+EnvironmentFile=/etc/max-bot.env
+ExecStart=/usr/bin/python3 /opt/max-bot/bot.py
+Restart=on-failure
+RestartSec=5
+
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
